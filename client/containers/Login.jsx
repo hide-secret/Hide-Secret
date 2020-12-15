@@ -1,5 +1,7 @@
-import React, { useEffect, useState } from "react"
+import React, { useState } from "react"
 import { GoogleLogin } from "react-google-login"
+import '../styles/login.scss'
+
 
 const clientId = "1021045324608-gr7ao84frl5bk4iflnrt32oaos6cu9pt.apps.googleusercontent.com"
 const Login = () => {
@@ -25,7 +27,7 @@ const Login = () => {
     }
     
     return (
-        <>
+        <div className="overall-container">
         <div className="login-container">
         <div className="title">
             Hidden
@@ -68,7 +70,7 @@ const Login = () => {
             />
         </div>
         </div>
-        </>
+        </div>
     )
 }
 

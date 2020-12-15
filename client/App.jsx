@@ -1,13 +1,26 @@
 import React from "react"
-import GoogleLogin from "react-google-login"
-import Login from "./components/Login"
+import Login from "./containers/Login"
+import Signup from './containers/Signup'
+import HomePage from './containers/HomePage'
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom"
+
+
+
 function App() {
     return (
-        <div>
-            <Login />
-        </div>
+        <Router>
+            <Switch>
+                <Route path='/' exact component={Login} />
+                <Route path='/signup' component={Signup} />
+                <Route path='/homepage' component={HomePage} />
+            </Switch>
+        </Router>
     )
 }
+
+// function Signup() {
+//     return <h1>Signuppp</h1>
+// }
 
 export default App
 
