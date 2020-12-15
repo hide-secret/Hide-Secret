@@ -11,11 +11,10 @@ const Login = () => {
 
     // create post request for authentication to backend
 
-
     const onSubmit = (e) => {
         e.prevenDefault();
         fetch('/login', {
-            method: 'POST',
+            method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
             },
