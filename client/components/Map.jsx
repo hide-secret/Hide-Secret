@@ -25,13 +25,15 @@ const Map = ({coord}) => {
         setMap(null)
     },[])
 
+    console.log("this is coor.latitude ", coord.latitude);
+
     return (
     <LoadScript 
         googleMapsApiKey="AIzaSyBvZynNRXAcbZte4W87A9TjUu7A4C4W5b0"
     >
         <GoogleMap
             mapContainerStyle={{width: '100vw', height: '90vh'}}
-            center={{lat: latitude, lng: longitude}}
+            center={{lat: coord.latitude, lng: coord.longitude}}
             zoom={15}
             // onLoad={onLoad}
             // onUnmount={onUnmount}
