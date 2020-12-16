@@ -8,11 +8,12 @@ const Login = () => {
             <GoogleLogin
                 clientId={clientId}
                 buttonText="Login"
-                // onSuccess={onSuccess}
+                onSuccess={onSuccess}
                 // onFailure={onFailure}
                 cookiePolicy={'single_host_origin'}
                 isSignedIn={true}
             />
+            {/* <a href="http://localhost:3000/auth/google/">LOGIN with Google</a> */}
         </div>
     )
 }
