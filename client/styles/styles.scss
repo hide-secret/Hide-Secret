@@ -28,8 +28,8 @@
 .login-container {
   position: relative;
   animation-name: loginVisibility;
-  animation-delay: 0.5s;
-  animation-duration: 3.5s;
+  animation-delay: 0.25s;
+  animation-duration: 2.5s;
   animation-fill-mode: forwards;
   opacity: 0;
 }
@@ -86,7 +86,7 @@ input:focus {
 }
 
 .signup-container a:visited {
-  color: rgb(58, 153, 176);;
+  color: rgb(58, 153, 176);
 }
 
 .google-login-container {
@@ -94,7 +94,6 @@ input:focus {
   max-width: 100%;
   font-size: 1em;
 }
-
 
 /* this is container for Signup container */
 
@@ -106,7 +105,7 @@ input:focus {
 .return-btn-div {
   display: flex;
   justify-content: center;
-  margin-top: .7em;
+  margin-top: 0.7em;
 }
 
 .return-btn-div a {
@@ -114,7 +113,106 @@ input:focus {
   color: grey;
 }
 
-.return-btn-div a:visited{
+.return-btn-div a:visited {
   color: rgb(58, 153, 176);
 }
 
+/* Map page */
+
+.map-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #add8e6;
+  padding: 0.5em 0;
+  position: sticky;
+}
+
+.map-logo {
+  margin-left: 1em;
+  font-size: 1.5em;
+}
+
+.hamburger-icon {
+  margin-right: 1em;
+  font-size: 1.5em;
+}
+
+#root {
+  overflow: hidden;
+}
+
+.dropSecret-container {
+  position: absolute;
+  bottom: 1em;
+  z-index: 99;
+  border: solid;
+  box-sizing: content-box;
+}
+
+.dropSecretImg {
+  width: 20%;
+}
+
+.map-container {
+  height: 100vh;
+}
+
+.stash-icon {
+  color: black;
+}
+
+.stash-icon {
+  color: black;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
+
+.stash-icon:visited {
+  color: black;
+}
+
+.dropSecret-btn {
+  display: inline-block;
+  height: 3.5em;
+  width: 3em;
+  padding: 0.35em 1.2em;
+  margin: 0 0.3em 0.3em 0;
+  border-radius: 60%;
+  text-decoration: none;
+  font-family: "Roboto", sans-serif;
+  font-weight: bold;
+  background-color: rgb(233, 49, 79);
+  color: white;
+  text-align: center;
+  padding-top: 1em;
+  line-height: 130%;
+  vertical-align: middle;
+  transition: all 0.2s;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
+
+@media all and (max-width: 30em) {
+  .dropSecret-btn {
+    display: block;
+    margin: 0.4em auto;
+  }
+}
+
+/* Stash */
+
+.stash-container {
+  border: solid;
+  height: 100vh;
+}
