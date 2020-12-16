@@ -62,7 +62,6 @@ const Login = () => {
         
         <div className="google-login-container">
        
-        
             <GoogleLogin
                 clientId={clientId}
                 buttonText={"Log in with Google"}

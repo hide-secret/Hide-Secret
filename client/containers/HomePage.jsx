@@ -22,7 +22,7 @@ const HomePage = () => {
     console.log('position.coords.lat ', coord)
     return (
         <>
-        <Suspense fallback={<p>loading</p>}>
+        <Suspense fallback={<div className="loading"></div>}>
         <Map coord={coord}/>
         </Suspense>
         </>
