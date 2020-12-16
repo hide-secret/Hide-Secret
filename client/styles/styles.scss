@@ -26,7 +26,7 @@
 }
 
 .login-container {
-  position: relative;
+  text-align: center;
   animation-name: loginVisibility;
   animation-delay: 0.25s;
   animation-duration: 2.5s;
@@ -49,6 +49,13 @@
   border: none;
   border-bottom: 1px solid;
   text-align: center;
+}
+
+.display-container {
+  padding: 0.5em;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
 }
 
 button:focus,
@@ -79,6 +86,13 @@ input:focus {
 .signup-container a {
   text-decoration: none;
   color: grey;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
 }
 
 .signup-container a:hover {
@@ -90,9 +104,14 @@ input:focus {
 }
 
 .google-login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding-left: 3em;
   margin-top: 0.5em;
-  max-width: 100%;
-  font-size: 1em;
+  max-width: 73%;
+  font-size: 0.5em;
 }
 
 /* this is container for Signup container */
@@ -111,6 +130,13 @@ input:focus {
 .return-btn-div a {
   text-decoration: none;
   color: grey;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
 }
 
 .return-btn-div a:visited {
@@ -146,7 +172,6 @@ input:focus {
   position: absolute;
   bottom: 1em;
   z-index: 99;
-  border: solid;
   box-sizing: content-box;
 }
 
@@ -179,18 +204,17 @@ input:focus {
 
 .dropSecret-btn {
   display: inline-block;
-  height: 3.5em;
+  font-size: 0.8em;
+  padding: 10, 4;
+  height: 3em;
   width: 3em;
-  padding: 0.35em 1.2em;
   margin: 0 0.3em 0.3em 0;
-  border-radius: 60%;
-  text-decoration: none;
+  border: none;
+  border-radius: 55%;
   font-family: "Roboto", sans-serif;
-  font-weight: bold;
   background-color: rgb(233, 49, 79);
   color: white;
   text-align: center;
-  padding-top: 1em;
   line-height: 130%;
   vertical-align: middle;
   transition: all 0.2s;
@@ -215,4 +239,82 @@ input:focus {
 .stash-container {
   border: solid;
   height: 100vh;
+}
+
+.stash-title {
+  display: flex;
+  justify-content: center;
+  margin-top: 3em;
+  font-family: "Courier New", Courier, monospace;
+}
+
+/* Stats */
+
+.ranking-main-container {
+  color: black;
+  height: 100vh;
+  background-color: #f0f8ff;
+}
+.x-btn {
+  margin: 1em 0 0 1em;
+  border: none;
+  background-color: transparent;
+}
+/* */
+.global-ranking-container {
+  background-color: #f8f8ff;
+  border: 2px solid #ebebf5;
+}
+
+.global-ranking-title {
+  display: flex;
+  justify-content: center;
+  font-family: "Courier New", Courier, monospace;
+  margin-top: 0.5em;
+  font-size: 1.5em;
+  border-bottom: 1px solid#ebebf5;
+}
+
+.global-ranking-count {
+  display: flex;
+  justify-content: center;
+  margin-top: 2em;
+}
+
+.ranking-footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2em;
+}
+
+#your-ranking-container {
+  margin-top: 2em;
+}
+
+/* suspense */
+
+.spinner-container {
+  height: 100vh;
+}
+
+.loading {
+  align-items: center;
+  border: 16px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 16px solid #3498db;
+  width: 30px;
+  height: 30px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
