@@ -22,7 +22,7 @@ const Signup = () => {
         <div className="overall-container">
         <div className="login-container">
         <div className="title">
-        Create an account
+        Create account
      </div>
      <div className="signup-form">
      <form onSubmit={onSubmit}>
