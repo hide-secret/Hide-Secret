@@ -1,3 +1,120 @@
 * {
-    background-color: white;
+  margin: 0;
+  padding: 0;
 }
+
+/* this is container for Login container */
+
+.overall-container {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #add8e6;
+}
+
+.title {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1em;
+  font-size: 2em;
+  font-family: "Courier New", Courier, monospace;
+}
+
+.password-container {
+  margin-top: 0.7em;
+}
+
+.login-container {
+  position: relative;
+  animation-name: loginVisibility;
+  animation-delay: 0.5s;
+  animation-duration: 3.5s;
+  animation-fill-mode: forwards;
+  opacity: 0;
+}
+
+@keyframes loginVisibility {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 100%;
+  }
+}
+
+.login-input {
+  border-radius: 2%;
+  min-height: 2em;
+  border: none;
+  border-bottom: 1px solid;
+  text-align: center;
+}
+
+button:focus,
+input:focus {
+  outline: none;
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 1em;
+}
+
+.btn {
+  width: 5em;
+  height: 2em;
+  background-color: white;
+  border: none;
+  border-radius: 1em;
+}
+
+.signup-container {
+  margin-top: 0.8em;
+  font-size: 0.9em;
+  text-align: center;
+}
+
+.signup-container a {
+  text-decoration: none;
+  color: grey;
+}
+
+.signup-container a:hover {
+  color: rgb(32, 93, 192);
+}
+
+.signup-container a:visited {
+  color: rgb(58, 153, 176);;
+}
+
+.google-login-container {
+  margin-top: 0.5em;
+  max-width: 100%;
+  font-size: 1em;
+}
+
+
+/* this is container for Signup container */
+
+.signup-form {
+  display: flex;
+  justify-content: center;
+}
+
+.return-btn-div {
+  display: flex;
+  justify-content: center;
+  margin-top: .7em;
+}
+
+.return-btn-div a {
+  text-decoration: none;
+  color: grey;
+}
+
+.return-btn-div a:visited{
+  color: rgb(58, 153, 176);
+}
+
