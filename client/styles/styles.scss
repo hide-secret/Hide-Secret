@@ -26,7 +26,6 @@
 }
 
 .login-container {
-  position: relative;
   animation-name: loginVisibility;
   animation-delay: 0.25s;
   animation-duration: 2.5s;
@@ -146,7 +145,6 @@ input:focus {
   position: absolute;
   bottom: 1em;
   z-index: 99;
-  border: solid;
   box-sizing: content-box;
 }
 
@@ -179,18 +177,17 @@ input:focus {
 
 .dropSecret-btn {
   display: inline-block;
-  height: 3.5em;
+  font-size: .8em;
+  padding: 10, 4;
+  height: 3em;
   width: 3em;
-  padding: 0.35em 1.2em;
   margin: 0 0.3em 0.3em 0;
-  border-radius: 60%;
-  text-decoration: none;
+  border: none;
+  border-radius: 55%;
   font-family: "Roboto", sans-serif;
-  font-weight: bold;
   background-color: rgb(233, 49, 79);
   color: white;
   text-align: center;
-  padding-top: 1em;
   line-height: 130%;
   vertical-align: middle;
   transition: all 0.2s;
@@ -218,7 +215,8 @@ input:focus {
 }
 
 .stash-title {
-  border: solid;
   display: flex;
   justify-content: center;
+  margin-top: 3em;
+  font-family: "Courier New", Courier, monospace;
 }

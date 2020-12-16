@@ -1,10 +1,12 @@
 import React, { useState } from "react"
 import { GoogleLogin } from "react-google-login"
 import '../styles/styles.scss'
-
+import axios from 'axios'
+import {useHistory} from 'react-router-dom'
 
 const clientId = "1021045324608-gr7ao84frl5bk4iflnrt32oaos6cu9pt.apps.googleusercontent.com"
 const Login = () => {
+    let history = useHistory()
     // create our hooks for username
     const [username, setUsername] = useState('')
     // create hook for passowrd
@@ -14,15 +16,12 @@ const Login = () => {
     // create post request for authentication to backend
 
     const onSubmit = (e) => {
-        e.prevenDefault();
-        fetch('/login', {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({username, password}),
-        })
-        .then((res) => res.json())
+        e.preventDefault();
+        axios.post('http://localhost:3000/user/login', 
+        {username, password}
+        ).then((data) => 
+        history.push('/homepage', {userID: data.data[0].userid})
+        )
         .catch((err) => console.log(err))
     }
     
@@ -32,7 +31,7 @@ const Login = () => {
         <div className="title">
             Hidden
         </div>
-            <form action="/login" method="GET" onSubmit={onSubmit}>
+            <form action="/user/login" method="POST" onSubmit={onSubmit}>
                 <div className="username-container">
                     <input className="login-input" 
                     type="text" 
@@ -51,7 +50,7 @@ const Login = () => {
                     />
                 </div>
                 <div className="button-container">
-                    <button className="btn">Login</button>
+                    <input type="submit" className="btn" value="login"/>
                 </div>
             </form>
         <div className="signup-container">

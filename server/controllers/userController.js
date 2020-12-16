@@ -46,14 +46,16 @@ module.exports = {
   },
 
   checkLogin: (req, res, next) => {
+    console.log('in check login controller')
     let {username, password} = req.body;
-    let query = 'SELECT password FROM users WHERE username = ($1)';
+    let query = 'SELECT * FROM users WHERE username = ($1)';
     db.query(query, [username])
     .then(data => {
       bcrypt.compare(password, data.rows[0].password, (err, result) => {
         if(err) return next(err);
         //password matches
         res.cookie('name', username)
+        res.locals.userInfo = data.rows
         return next();
       })
     })

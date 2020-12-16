@@ -1,38 +1,36 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useState, useEffect } from 'react'
 import { MenuContext } from 'react-flexible-sliding-menu'
 import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api';
-import dropSecret from '../assets/dropSecret.png'
 import Header from './Header'
+import PopupMessage from './PopupMessage'
+import axios from 'axios'
 
 const Map = ({coord}) => {
-
     const { toggleMenu } = useContext(MenuContext)
-    const [message, setMessage] = useState("")
-
+    const [data, setData] = useState([])
+    // const {popup, showPopup} = useState(false)
 
     const mark = [{lat: 40.7599009, lng: -73.8337662}, {lat: 40.7599003, lng: -73.8331661}, {lat: 40.7594003, lng:  -73.3337635}]
 
-    const sendingSecret = (e) => {
-        e.preventDefault()
-        //fetch to /secrets 
-        //post method 
-        //send ID, UserID, Latitude, Longitude in body 
-        fetch('/secrets', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                username: username,
-                message: message,
-                latitude: coord.latitude,
-                longitude: coord.longitude,
-            }),
-        })
-        .then((res) => res.json())
+    // const togglePopup = () => {
+    //     console.log('in toggle popuup')
+    //     showPopup ? showPopup=false : showPopup=true
+    // }
+    useEffect(() => {
+        axios.get('http://localhost:3000/secrets')
+        .then(data => setData([...data.data]))
         .catch((err) => console.log(err))
 
-    }
+    }, [])
+
+// console.log("DATA", data)
+//    const mark = data.map(el => {
+//        return {
+//            lat: el.latitude,
+//            lng: el.longitude
+//        }
+//    })
+
 
     return (
     <div className="map-container">
@@ -50,29 +48,35 @@ const Map = ({coord}) => {
         {mark && mark.map((el) => {
             console.log("position", el)
             return (<Marker 
-            
-            position={el}/>)
-    
+            position={el}
+            label={"this be a test message yo"}
+            />)
         })}
             
         <></>
         </GoogleMap>
     </LoadScript>
 
-    
-   
         <div className="dropSecret-container">
-           
-    <button onSubmit={sendingSecret} className="dropSecret-btn">
-    Drop Secret
-  </button> 
-        
+            <button 
+            onClick={ ()=> {
+                if (popup) return (
+              <PopupMessage 
+              latitude={coord.latitude}
+              longitude={coord.longitude}
+               />)
+               else showPopup()
+               }} 
+            className="dropSecret-btn">
+            Drop Secret
+        </button> 
     </div>
     </div>
-        )
+    )
 }
 
 export default Map;
 
 
 //still need functionality to remove marker position after user gets secret
+

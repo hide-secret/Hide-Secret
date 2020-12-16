@@ -1,8 +1,11 @@
 import React, { useState, useEffect, Suspense } from 'react'
 // import Map from '../components/Map'
+import {useLocation} from 'react-router-dom'
 
 const Map = React.lazy(() => import('../components/Map'))
 const HomePage = () => {
+    const location = useLocation()
+    // console.log('LOCATION', location.state.userID)
 
     const [coord, setCoord] =  useState({})
 
