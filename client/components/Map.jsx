@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import { MenuContext } from 'react-flexible-sliding-menu'
 import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api';
 import dropSecret from '../assets/dropSecret.png'
@@ -7,11 +7,32 @@ import Header from './Header'
 const Map = ({coord}) => {
 
     const { toggleMenu } = useContext(MenuContext)
+    const [message, setMessage] = useState("")
 
 
     const mark = [{lat: 40.7599009, lng: -73.8337662}, {lat: 40.7599003, lng: -73.8331661}, {lat: 40.7594003, lng:  -73.3337635}]
 
-    
+    const sendingSecret = (e) => {
+        e.preventDefault()
+        //fetch to /secrets 
+        //post method 
+        //send ID, UserID, Latitude, Longitude in body 
+        fetch('/secrets', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                username: username,
+                message: message,
+                latitude: coord.latitude,
+                longitude: coord.longitude,
+            }),
+        })
+        .then((res) => res.json())
+        .catch((err) => console.log(err))
+
+    }
 
     return (
     <div className="map-container">
@@ -42,9 +63,9 @@ const Map = ({coord}) => {
    
         <div className="dropSecret-container">
            
-    <a href="#" class="button" className="dropSecret-btn">
+    <button onSubmit={sendingSecret} className="dropSecret-btn">
     Drop Secret
-  </a> 
+  </button> 
         
     </div>
     </div>
