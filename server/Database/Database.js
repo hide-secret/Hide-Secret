@@ -10,8 +10,8 @@
 //    secretsID SERIAL PRIMARY KEY, 
 //    message VARCHAR (500), 
 //    userID int NOT NULL,
-//    latitude DECIMAL (30) NOT NULL,
-//    longitude DECIMAL (30) NOT NULL,
+//    latitude DECIMAL (10,7) NOT NULL,
+//    longitude DECIMAL (10,7) NOT NULL,
 //    FOREIGN KEY (userID) REFERENCES Users(userID)
 //  );
 
@@ -24,7 +24,8 @@
 
 const {Pool} = require('pg');
 
-const myURI = 'postgres://hsscjjrs:t1oBvBKd4IMLbdIgH25qJlsZUSlbDIb_@suleiman.db.elephantsql.com:5432/hsscjjrs';
+const myURI = 'postgres://uzcccgwc:ChKFVRFPLmOodr7CNBiDBqAfMISAH16G@suleiman.db.elephantsql.com:5432/uzcccgwc';
+// const myURI = 'postgres://hsscjjrs:t1oBvBKd4IMLbdIgH25qJlsZUSlbDIb_@suleiman.db.elephantsql.com:5432/hsscjjrs';
 
 const URI = process.env.PG_URI || myURI;
 

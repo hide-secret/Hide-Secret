@@ -20,7 +20,7 @@ router.post("/stash", secretController.getUserStash, (req, res) => {
 //update score and remove message from createdSecret table and
 //create same secret in stash table with user who found secret id
 router.patch("/", secretController.deleteAndStashSecret, (req, res) => {
-  res.status(200).json({});
+  res.status(200).json("deleted");
 });
 
 module.exports = router;

@@ -52,7 +52,7 @@
 }
 
 .display-container {
-  padding: .5em;
+  padding: 0.5em;
   display: flex;
   justify-content: space-evenly;
   align-items: center;
@@ -96,7 +96,6 @@ input:focus {
   color: rgb(58, 153, 176);
 }
 
-
 .google-login-container {
   display: flex;
   justify-content: center;
@@ -105,8 +104,7 @@ input:focus {
   padding-left: 3em;
   margin-top: 0.5em;
   max-width: 73%;
-  font-size: .5em;
-
+  font-size: 0.5em;
 }
 
 /* this is container for Signup container */
@@ -192,7 +190,7 @@ input:focus {
 
 .dropSecret-btn {
   display: inline-block;
-  font-size: .8em;
+  font-size: 0.8em;
   padding: 10, 4;
   height: 3em;
   width: 3em;
@@ -234,4 +232,22 @@ input:focus {
   justify-content: center;
   margin-top: 3em;
   font-family: "Courier New", Courier, monospace;
+}
+
+.drop-msg-btn {
+  background-color: #ffe4e1; /* Green */
+  border: none;
+  color: #1e2021;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  transition-duration: 0.4s;
+}
+.drop-msg-btn:hover {
+  box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24),
+    0 17px 50px 0 rgba(0, 0, 0, 0.19);
 }

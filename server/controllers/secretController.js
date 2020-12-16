@@ -37,6 +37,7 @@ module.exports = {
 
   deleteAndStashSecret: (req, res, next) => {
     let { secretsID, userID } = req.body;
+    console.log(secretsID, userID)
     let deleteQuery =
       "DELETE FROM CreatedSecrets WHERE secretsID = $1 RETURNING message";
     let stashQuery = "INSERT INTO SecretStash (message, userID) VALUES ($1, $2);";
