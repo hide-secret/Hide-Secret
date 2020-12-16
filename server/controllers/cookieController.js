@@ -1,8 +1,9 @@
-const cookieParser = require("cookie-parser");
+// const cookieParser = require("cookie-parser");
 
 module.exports = {
 
   checkCookie (req, res, next){
+    console.log('in check cookie')
     const {username, password} = req.body;
     if(req.cookies.name === username){
       console.log('found cookies ', req.cookies)
@@ -17,6 +18,15 @@ module.exports = {
     console.log(res.cookies)
     return next()
   },
+
+  setCookie (req, res, next) {
+    console.log('in setCookie middleware')
+   //deconstruct user and pass from req.body obj
+   const {username} = req.body;
+  //  console.log("username", username)
+   res.cookie('name', username)
+     return next();
+ },
 
 
 }

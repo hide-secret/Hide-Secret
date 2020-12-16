@@ -1,10 +1,12 @@
 import React, {useState} from "react";
+import {useHistory} from 'react-router-dom'
 const Signup = () => {
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
+    let history = useHistory()
     const onSubmit = (e) => {
-        e.prevenDefault();
-        fetch('/signup', {
+        e.preventDefault();
+        fetch('http://localhost:3000/user/signup', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -12,6 +14,7 @@ const Signup = () => {
             body: JSON.stringify({username, password}),
         })
         .then((res) => res.json())
+        .then((data) => history.push('/homepage'))
         .catch((err) => console.log(err))
     }
 
@@ -19,10 +22,10 @@ const Signup = () => {
         <div className="overall-container">
         <div className="login-container">
         <div className="title">
-        Create an account
+        Create account
      </div>
      <div className="signup-form">
-     <form action="/" method="POST" onSubmit={onSubmit}>
+     <form onSubmit={onSubmit}>
              <div className="username-container">
                  <input className="login-input" 
                  type="text" 

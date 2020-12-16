@@ -3,9 +3,10 @@ const app = express();
 const path = require("path");
 const passport = require("passport");
 const cookieParser = require('cookie-parser');
-
+const cors = require('cors')
 
 app.use(cookieParser());
+app.use(cors())
 
 //import routers
 const passportRouter = require("./routes/passportRouter");
