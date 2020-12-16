@@ -29,8 +29,9 @@ const Login = () => {
         <div className="overall-container">
         <div className="login-container">
         <div className="title">
-            Hidden
+            <p>Hide  <span className="amp"> & </span>  Secret</p>
         </div>
+
             <form action="/user/login" method="POST" onSubmit={onSubmit}>
                 <div className="username-container">
                     <input className="login-input" 
@@ -48,31 +49,26 @@ const Login = () => {
                     value={password || ''}
                     onChange={(e) => setPassword(e.target.value)}
                     />
-                </div>
-                <div className="display-container"> 
-                <div className="signup-container">
-                <a href="/signup">Create <br/> account</a>
-                </div>
+                </div>   
                 <div className="button-container">
-                    <input type="submit" className="btn" value="Log In"/>
+                    <input type="submit" className="btn" value="Log in"/>
                 </div>
+
+                <div className="signup-container">
+                <a href="/signup">Create account</a>
                 </div>
             </form>
-       
+         
         
         <div className="google-login-container">
-       
-            <GoogleLogin
-                clientId={clientId}
-                buttonText={"Log in with Google"}
-                // onSuccess={onSuccess}
-                // onFailure={onFailure}
-                cookiePolicy={'single_host_origin'}
-                isSignedIn={true}
-                style={{ height:10, size: 20}   
-                }
-            
-            />
+        <GoogleLogin
+            clientId={clientId}
+            buttonText={"Log in with Google"}
+            // onSuccess={onSuccess}
+            // onFailure={onFailure}
+            cookiePolicy={'single_host_origin'}
+            isSignedIn={true}
+        />
         </div>
         </div>
         </div>

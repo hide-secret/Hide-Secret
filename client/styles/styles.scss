@@ -1,24 +1,32 @@
 * {
   margin: 0;
   padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
 }
 
-/* this is container for Login container */
+/* this is container for Login container // background-color: #add8e6; */
 
 .overall-container {
   height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #add8e6;
+  background: url("../assets/one.jpg") no-repeat center;
+  background-size: cover;
 }
 
 .title {
   display: flex;
   justify-content: center;
-  margin-bottom: 1em;
-  font-size: 2em;
-  font-family: "Courier New", Courier, monospace;
+  margin-bottom: 0.4em;
+  font-size: 2.8em;
+  font: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+}
+
+.amp {
+  color: rgb(15, 15, 15);
 }
 
 .password-container {
@@ -49,6 +57,11 @@
   border: none;
   border-bottom: 1px solid;
   text-align: center;
+  opacity: 80%;
+}
+
+.login-input text {
+  opacity: 1;
 }
 
 .display-container {
@@ -72,9 +85,11 @@ input:focus {
 .btn {
   width: 5em;
   height: 2em;
-  background-color: white;
+  background-color: rgb(71, 133, 203);
+  color: white;
   border: none;
   border-radius: 1em;
+  opacity: 85%;
 }
 
 .signup-container {
@@ -85,33 +100,35 @@ input:focus {
 
 .signup-container a {
   text-decoration: none;
-  color: grey;
-  user-select: none;
-  -webkit-tap-highlight-color: transparent;
-  -webkit-touch-callout: none;
-  -webkit-user-select: none;
-  -khtml-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
+  color: rgb(73, 71, 71);
+  font-size: 1em;
 }
 
 .signup-container a:hover {
   color: rgb(32, 93, 192);
 }
 
-.signup-container a:visited {
-  color: rgb(58, 153, 176);
+.or {
+  padding: 0.4em;
+  font-size: 0.8em;
+  color: rgb(73, 71, 71);
 }
 
 .google-login-container {
+  padding: 2;
+  max-width: 77%;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   text-align: center;
   padding-left: 3em;
   margin-top: 0.5em;
   max-width: 73%;
   font-size: 0.5em;
+  margin-left: 5em;
+  margin-top: 1em;
+  font-size: 0.5em;
+  opacity: 80%;
 }
 
 /* this is container for Signup container */
@@ -140,7 +157,7 @@ input:focus {
 }
 
 .return-btn-div a:visited {
-  color: rgb(58, 153, 176);
+  color: rgb(73, 71, 71);
 }
 
 /* Map page */
@@ -173,6 +190,7 @@ input:focus {
   bottom: 1em;
   z-index: 99;
   box-sizing: content-box;
+  text-align: center;
 }
 
 .dropSecretImg {
@@ -206,8 +224,8 @@ input:focus {
   display: inline-block;
   font-size: 0.8em;
   padding: 10, 4;
-  height: 3em;
-  width: 3em;
+  height: 5em;
+  width: 5em;
   margin: 0 0.3em 0.3em 0;
   border: none;
   border-radius: 55%;
