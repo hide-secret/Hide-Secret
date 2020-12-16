@@ -5,7 +5,8 @@ const Stash = () => {
     return (
     <>
       <Header />
-      <div>Your Stash</div>
+      <div className="stash-title">Your Stash</div>
+
     </>
     )
 }
