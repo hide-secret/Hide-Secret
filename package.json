@@ -32,6 +32,8 @@
     "webpack-dev-server": "^3.11.0"
   },
   "dependencies": {
+    "bcrypt": "^5.0.0",
+    "cookie-parser": "^1.4.5",
     "@react-google-maps/api": "^2.0.2",
     "express": "^4.17.1",
     "passport": "^0.4.1",
