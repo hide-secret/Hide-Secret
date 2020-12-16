@@ -43,7 +43,7 @@
   }
 }
 
-input {
+.login-input {
   border-radius: 2%;
   min-height: 2em;
   border: none;
@@ -76,17 +76,17 @@ input:focus {
   text-align: center;
 }
 
-a {
+.signup-container a {
   text-decoration: none;
   color: grey;
 }
 
-a:hover {
+.signup-container a:hover {
   color: rgb(32, 93, 192);
 }
 
-a:visited {
-  color: rgb(32, 93, 192);
+.signup-container a:visited {
+  color: rgb(58, 153, 176);;
 }
 
 .google-login-container {
@@ -94,3 +94,27 @@ a:visited {
   max-width: 100%;
   font-size: 1em;
 }
+
+
+/* this is container for Signup container */
+
+.signup-form {
+  display: flex;
+  justify-content: center;
+}
+
+.return-btn-div {
+  display: flex;
+  justify-content: center;
+  margin-top: .7em;
+}
+
+.return-btn-div a {
+  text-decoration: none;
+  color: grey;
+}
+
+.return-btn-div a:visited{
+  color: rgb(58, 153, 176);
+}
+

@@ -1,6 +1,6 @@
 import React, { useState } from "react"
 import { GoogleLogin } from "react-google-login"
-import '../styles/login.scss'
+import '../styles/styles.scss'
 
 
 const clientId = "1021045324608-gr7ao84frl5bk4iflnrt32oaos6cu9pt.apps.googleusercontent.com"
@@ -32,9 +32,9 @@ const Login = () => {
         <div className="title">
             Hidden
         </div>
-            <form action="/login" method="POST" onSubmit={onSubmit}>
+            <form action="/login" method="GET" onSubmit={onSubmit}>
                 <div className="username-container">
-                    <input id="username" 
+                    <input className="login-input" 
                     type="text" 
                     placeholder="username" 
                     value={username || ''}
@@ -43,7 +43,7 @@ const Login = () => {
                 </div>
                 <div className="password-container">
                     <input 
-                    id="password" 
+                    className="login-input" 
                     type="password" 
                     placeholder="password"
                     value={password || ''}
