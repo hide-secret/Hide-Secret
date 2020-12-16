@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react'
-import Map from '../components/Map'
+import React, { useState, useEffect, Suspense } from 'react'
+// import Map from '../components/Map'
 
-
+const Map = React.lazy(() => import('../components/Map'))
 const HomePage = () => {
 
     const [coord, setCoord] =  useState({})
@@ -19,7 +19,9 @@ const HomePage = () => {
     console.log('position.coords.lat ', coord)
     return (
         <>
+        <Suspense fallback={<p>loading</p>}>
         <Map coord={coord}/>
+        </Suspense>
         </>
     )
 }

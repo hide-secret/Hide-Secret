@@ -3,27 +3,20 @@ import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api';
 
 const Map = ({coord}) => {
 
-    const mark = [{lat: 37.5643300, lng: -121.986}, {lat: 38.00, lng: -122}, {lat: 36.4, lng: -120}]
-
+    const mark = [{lat: 40.7599009, lng: -73.8337662}, {lat: 40.7599003, lng: -73.8331661}, {lat: 40.7594003, lng:  -73.3337635}]
 
     const [latitude, setLatitude] = useState(coord.latitude)
     const [longitude, setLongitude] = useState(coord.longitude)
     const [map, setMap] = useState(null)
 
-    useEffect(() => {
-        setLatitude(coord.latitude)
-        setLongitude(coord.longitude)
-    }, [coord.latitude, coord.longitude])
 
-    const onLoad = useCallback(function callback(map) {
-        const bounds = new window.google.maps.LatLngBounds();
-        map.fitBounds(bounds);
-        setMap(map)
-    }, [])
-
+const onLoad = marker => {
+    console.log('marker: ', marker.position)
+  }
     const onUnmount = useCallback(function callback(map) {
         setMap(null)
     },[])
+
 
     return (
     <LoadScript 
@@ -31,15 +24,19 @@ const Map = ({coord}) => {
     >
         <GoogleMap
             mapContainerStyle={{width: '100vw', height: '90vh'}}
-            center={{lat: latitude, lng: longitude}}
+            center={{lat: coord.latitude, lng: coord.longitude}}
             zoom={15}
-            // onLoad={onLoad}
-            // onUnmount={onUnmount}
             options={{disableDefaultUI: true}}
         >
-            {mark && mark.map((el) => {
-                <Marker position={el}/>
-            })}
+
+        {mark && mark.map((el) => {
+            console.log("position", el)
+            return (<Marker 
+            
+            position={el}/>)
+    
+        })}
+            
         <></>
         </GoogleMap>
     </LoadScript>
@@ -47,3 +44,6 @@ const Map = ({coord}) => {
 }
 
 export default Map;
+
+
+//still need functionality to remove marker position after user gets secret
