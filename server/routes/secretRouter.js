@@ -23,4 +23,9 @@ router.patch("/", secretController.deleteAndStashSecret, (req, res) => {
   res.status(200).json("deleted");
 });
 
+// getting ranking route
+router.get("/ranking", secretController.getAllRanking, (req, res) => {
+  res.status(200).json(res.locals.globalRank);
+});
+
 module.exports = router;

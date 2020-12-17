@@ -1,37 +1,41 @@
 import React, { useState, useContext, useEffect} from 'react'
 import { MenuContext } from "react-flexible-sliding-menu"
 import { useHistory } from 'react-router-dom'
+import axios from 'axios'
 
 
-const Ranking = () => {
+const Ranking = ({userId}) => {
     const { closeMenu } = useContext(MenuContext);
     let history = useHistory();
 
     // save stats from database
-    const [globalStats, setGlobalStats] = useState('')
-    const [userStats, setUserstats] = useState('')
+    const [globalStats, setGlobalStats] = useState([])
     
     useEffect(() => {
-      fetch("/globalRanking")
-      .then((data) => data.json())
-      .then((data) => setGlobalStats(data))
-    })
-
-    useEffect(() => {
-      fetch("/")
-      .then((data) => data.json())
-      .then((data) => setUserstats(data))
-    })
+      axios("http://localhost:3000/secrets/ranking")
+      .then((data) => setGlobalStats(data.data))
+    }, [])
 
     const logout = () => {
       closeMenu();
       history.push('/')
     }
 
-    
 
-
-
+    console.log("this is userId ", userId);
+    const getMyRank = () => {
+      let text = 'th'
+      for (let i = 0; i < globalStats.length; i++) {
+        if (globalStats[i].userid === userId) {
+          if(i === 0 ) text = 'st'
+          else if(i === 1 ) text = 'nd'
+          else if(i === 2 ) text = 'rd'
+          return (<div>
+              <p>{globalStats[i].username.charAt(0).toUpperCase() + globalStats[i].username.slice(1)}: {(i + 1)}<sup>{text}</sup> Place</p>
+          </div>)
+        }
+      }
+    }
 
     return (
         <>
@@ -50,26 +54,27 @@ const Ranking = () => {
       <div className="global-ranking-container">
         <div className="global-ranking-title">Global Ranking</div>
 
-        {/* Need to wait for backend */}
-        <div className="global-ranking-count">PERSON found # messages</div>
-        <div>{globalStats && globalStats.map((element) => {
-          <div>{element.globalRank}</div>
-        })}
-        {/* Need to wait for backend */}
+
+        <div className="global-ranking-count">{globalStats && globalStats.map((element, index) => {
+          let text = 'th'
+          if(index === 0 ) text = 'st'
+          else if(index === 1 ) text = 'nd'
+          else if(index === 2 ) text = 'rd'
+          return (
+              <div>
+                {element.username.charAt(0).toUpperCase() + element.username.slice(1)} - {element.score} - {++index}<sup>{text}</sup> Place
+              </div>
+              )
+            }
+          )}
         </div>
       </div>
 
       
       <div id="your-ranking-container" className="global-ranking-container">
         <div className="global-ranking-title">Your Ranking</div>
-        <div className="global-ranking-count">USERNAME NUMBER RANKED</div>
-
-                {/* Need to wait for backend */}
-                <div className="global-ranking-count">PERSON found # messages</div>
-        <div>{globalStats && globalStats.map((element) => {
-          <div>{element.globalRank}</div>
-        })}
-        {/* Need to wait for backend */}
+        <div className="global-ranking-count">
+          {getMyRank()}
         </div>
 
       </div>

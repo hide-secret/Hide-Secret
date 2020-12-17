@@ -9,8 +9,6 @@ const Header = ({userID}) => {
     const redirect = () => {
         history.push("/stash", {userID})
     }
-
-    console.log("header userID ", userID);
     const { toggleMenu } = useContext(MenuContext)
     return (
         <div className="map-header">

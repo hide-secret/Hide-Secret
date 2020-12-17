@@ -5,7 +5,7 @@ import axios from 'axios'
 import {useHistory} from 'react-router-dom'
 
 const clientId = "1021045324608-gr7ao84frl5bk4iflnrt32oaos6cu9pt.apps.googleusercontent.com"
-const Login = () => {
+const Login = ({setUserId}) => {
     let history = useHistory()
     // create our hooks for username
     const [username, setUsername] = useState('')
@@ -19,9 +19,10 @@ const Login = () => {
         e.preventDefault();
         axios.post('http://localhost:3000/user/login', 
         {username, password}
-        ).then((data) => 
+        ).then((data) => {
+        setUserId(data.data[0].userid) 
         history.push('/homepage', {userID: data.data[0].userid})
-        )
+        })
         .catch((err) => console.log(err))
     }
     
