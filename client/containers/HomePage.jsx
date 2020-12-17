@@ -21,7 +21,7 @@ const HomePage = () => {
     console.log('position.coords.lat ', coord)
     console.log(location)
     return (
-        <>
+        <div className="home">
         { 
         location.state !== undefined ?
         <Suspense fallback={<div className="loading"></div>}>
@@ -31,7 +31,7 @@ const HomePage = () => {
         :
         <Redirect to='/'/>
         }
-        </>
+        </div>
     )
 }
 
