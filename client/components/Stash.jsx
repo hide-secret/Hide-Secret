@@ -16,8 +16,6 @@ const Stash = (props) => {
 
   const location = useLocation();
 
-  console.log("this is location.state ", location.state);
-
   // save stash from backend
   const [stash, setStash] = useState([])
   const { toggleMenu } = useContext(MenuContext)
@@ -30,17 +28,19 @@ const Stash = (props) => {
 
     return (
     <>
+    <div className="ranking-main-container">
       <div className="map-header">
         <div onClick={toggleMenu} className="map-logo"><i class="fa fa-trophy"></i></div>
         <div onClick={redirect} className="stash-icon" ><div className="hamburger-icon"><AiOutlineHome /></div></div>
     </div>
-      <div className="stash-container">
-        <div className="stash-title">Your Stash</div>
-        <div className="stash-list">
+      <div id="stash-container" className="global-ranking-container">
+        <div className="global-ranking-title">Your Stash</div>
+        <div className="global-ranking-count">
           {stash && stash.map((element, index) => (
             <StashOutput key={index} stashItem={element.message}/>
       ))}
         </div> 
+      </div>
       </div>
     </>
     )

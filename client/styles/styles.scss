@@ -216,12 +216,6 @@ input:focus {
   color: black;
 }
 
-.stash-list {
-  border: 1px solid red;
-  overflow-y: scroll;
-  overflow-x: hidden;
-}
-
 .stash-icon {
   color: black;
   user-select: none;
@@ -274,10 +268,13 @@ input:focus {
   height: 100vh;
 }
 
+#stash-container {
+  margin-top: 2em;
+}
+
 .stash-title {
   display: flex;
   justify-content: center;
-  margin-top: 3em;
   font-family: "Courier New", Courier, monospace;
 }
 

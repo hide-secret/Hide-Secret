@@ -20,9 +20,7 @@ const Ranking = ({userId}) => {
       closeMenu();
       history.push('/')
     }
-
-
-    console.log("this is userId ", userId);
+    
     const getMyRank = () => {
       let text = 'th'
       for (let i = 0; i < globalStats.length; i++) {
