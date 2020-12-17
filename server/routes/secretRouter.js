@@ -13,7 +13,7 @@ router.post("/", secretController.postNewSecret, (req, res) => {
 });
 
 //get all secret stash route
-router.post("/stash", secretController.getUserStash, (req, res) => {
+router.get("/stash/:userID", secretController.getUserStash, (req, res) => {
   res.status(200).json(res.locals.stash);
 });
 

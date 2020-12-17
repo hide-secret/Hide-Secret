@@ -1,9 +1,12 @@
 import React from 'react'
 
 const StashOutput = ({stashItem}) => {
+    console.log("Stash output", stashItem)
     return ( 
-        <div>{stashItem}</div>
+        <div>
+        {stashItem} 
+        </div>
     )
 }
 
-export default StashOuput;
+export default StashOutput;

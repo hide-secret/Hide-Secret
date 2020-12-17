@@ -13,7 +13,8 @@ module.exports = {
   },
 
   getUserStash: (req, res, next) => {
-    let { userID } = req.body;
+    console.log('in getUserStash')
+    let { userID } = req.params;
     let query = "SELECT * FROM SecretStash WHERE userID = ($1)";
     db.query(query, [userID]).then((data) => {
       console.log(data);
