@@ -268,14 +268,43 @@ input:focus {
   height: 100vh;
 }
 
-#stash-container {
-  margin-top: 2em;
+.stash-overall-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100vh;
 }
 
 .stash-title {
   display: flex;
   justify-content: center;
+  margin-bottom: 3em;
   font-family: "Courier New", Courier, monospace;
+}
+.stash-item {
+  width: 80%;
+  border-radius: 4px;
+  text-align: center;
+  margin: 0.5rem;
+  padding: 8px;
+  background-color: #fdead8;
+  color: #000;
+}
+.scroll-box {
+  height: 100%;
+  overflow: hidden;
+  overflow-y: scroll;
+}
+.box {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow-y: scroll;
+}
+.main-stash-container {
+  height: 50%;
+  margin-top: 3em;
 }
 
 /* Stats */

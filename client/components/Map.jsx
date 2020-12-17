@@ -60,6 +60,7 @@ const Map = ({coord, userID}) => {
     }
 
     const displayText = (e, idx) =>{
+        console.log(e)
         swal({
             title: "Do You Want to View This Secret?",
             text: "Once viewed, the secret will no longer show up for others!",
