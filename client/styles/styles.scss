@@ -1,24 +1,36 @@
 * {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
 }
 
-/* this is container for Login container */
-
+/* this is container for Login container // background-color: #add8e6; */
+html,
+body {
+  height: 100%;
+}
 .overall-container {
-  height: 100vh;
   display: flex;
+  height: 100vh;
   justify-content: center;
   align-items: center;
-  background-color: #add8e6;
+  background: url("../assets/one.jpg") no-repeat center center fixed;
+  background-size: cover;
 }
 
 .title {
   display: flex;
   justify-content: center;
-  margin-bottom: 1em;
-  font-size: 2em;
-  font-family: "Courier New", Courier, monospace;
+  margin-bottom: 0.4em;
+  font-size: 2.8em;
+  font: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+}
+
+.amp {
+  color: rgb(15, 15, 15);
 }
 
 .password-container {
@@ -49,6 +61,11 @@
   border: none;
   border-bottom: 1px solid;
   text-align: center;
+  opacity: 80%;
+}
+
+.login-input text {
+  opacity: 1;
 }
 
 .display-container {
@@ -72,9 +89,11 @@ input:focus {
 .btn {
   width: 5em;
   height: 2em;
-  background-color: white;
+  background-color: rgb(71, 133, 203);
+  color: white;
   border: none;
   border-radius: 1em;
+  opacity: 85%;
 }
 
 .signup-container {
@@ -85,20 +104,32 @@ input:focus {
 
 .signup-container a {
   text-decoration: none;
-  color: grey;
+  color: rgb(73, 71, 71);
+  font-size: 1em;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
 }
 
 .signup-container a:hover {
   color: rgb(32, 93, 192);
 }
 
-.signup-container a:visited {
-  color: rgb(58, 153, 176);
+.or {
+  padding: 0.4em;
+  font-size: 0.8em;
+  color: rgb(73, 71, 71);
 }
 
 .google-login-container {
+  padding: 2;
+  max-width: 77%;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   text-align: center;
   padding-left: 3em;
@@ -123,10 +154,17 @@ input:focus {
 .return-btn-div a {
   text-decoration: none;
   color: grey;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
 }
 
 .return-btn-div a:visited {
-  color: rgb(58, 153, 176);
+  color: rgb(73, 71, 71);
 }
 
 /* Map page */
@@ -137,7 +175,6 @@ input:focus {
   align-items: center;
   background-color: #add8e6;
   padding: 0.5em 0;
-  position: sticky;
 }
 
 .map-logo {
@@ -159,6 +196,7 @@ input:focus {
   bottom: 1em;
   z-index: 99;
   box-sizing: content-box;
+  text-align: center;
 }
 
 .dropSecretImg {
@@ -171,6 +209,12 @@ input:focus {
 
 .stash-icon {
   color: black;
+}
+
+.stash-list {
+  border: 1px solid red;
+  overflow-y: scroll;
+  overflow-x: hidden;
 }
 
 .stash-icon {
@@ -192,8 +236,8 @@ input:focus {
   display: inline-block;
   font-size: 0.8em;
   padding: 10, 4;
-  height: 3em;
-  width: 3em;
+  height: 5em;
+  width: 5em;
   margin: 0 0.3em 0.3em 0;
   border: none;
   border-radius: 55%;
@@ -234,6 +278,80 @@ input:focus {
   font-family: "Courier New", Courier, monospace;
 }
 
+/* Stats */
+
+.ranking-main-container {
+  color: black;
+  height: 100vh;
+  background-color: #f0f8ff;
+}
+.x-btn {
+  margin: 1em 0 0 1em;
+  border: none;
+  background-color: transparent;
+}
+/* */
+.global-ranking-container {
+  background-color: #f8f8ff;
+  border: 2px solid #ebebf5;
+}
+
+.global-ranking-title {
+  display: flex;
+  justify-content: center;
+  font-family: "Courier New", Courier, monospace;
+  margin-top: 0.5em;
+  font-size: 1.5em;
+  border-bottom: 1px solid#ebebf5;
+}
+
+.global-ranking-count {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 1em;
+}
+
+.ranking-footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2em;
+}
+
+#your-ranking-container {
+  margin-top: 2em;
+}
+
+/* suspense */
+
+.spinner-container {
+  height: 100vh;
+}
+
+.loading {
+  align-items: center;
+  border: 16px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 16px solid #3498db;
+  width: 30px;
+  height: 30px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Drop Button */
+
 .drop-msg-btn {
   background-color: #ffe4e1;
   border: none;
@@ -246,8 +364,21 @@ input:focus {
   margin: 4px 2px;
   cursor: pointer;
   transition-duration: 0.4s;
+  border-radius: 50em;
 }
 .drop-msg-btn:hover {
   box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24),
     0 17px 50px 0 rgba(0, 0, 0, 0.19);
 }
+
+/* Main router container*/
+
+.main-route-container {
+  height: 100vh;
+  width: 100vw;
+}
+
+/* 
+37.5643476
+-121.9858608
+*/

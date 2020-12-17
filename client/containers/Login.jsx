@@ -5,7 +5,7 @@ import axios from 'axios'
 import {useHistory} from 'react-router-dom'
 
 const clientId = "1021045324608-gr7ao84frl5bk4iflnrt32oaos6cu9pt.apps.googleusercontent.com"
-const Login = () => {
+const Login = ({setUserId}) => {
     let history = useHistory()
     // create our hooks for username
     const [username, setUsername] = useState('')
@@ -19,9 +19,10 @@ const Login = () => {
         e.preventDefault();
         axios.post('http://localhost:3000/user/login', 
         {username, password}
-        ).then((data) => 
+        ).then((data) => {
+        setUserId(data.data[0].userid) 
         history.push('/homepage', {userID: data.data[0].userid})
-        )
+        })
         .catch((err) => console.log(err))
     }
     
@@ -29,8 +30,9 @@ const Login = () => {
         <div className="overall-container">
         <div className="login-container">
         <div className="title">
-            Hidden
+            <p>Hide  <span className="amp"> & </span>  Secret</p>
         </div>
+
             <form action="/user/login" method="POST" onSubmit={onSubmit}>
                 <div className="username-container">
                     <input className="login-input" 
@@ -48,32 +50,26 @@ const Login = () => {
                     value={password || ''}
                     onChange={(e) => setPassword(e.target.value)}
                     />
-                </div>
-                <div className="display-container"> 
-                <div className="signup-container">
-                <a href="/signup">Create <br/> account</a>
-                </div>
+                </div>   
                 <div className="button-container">
-                    <input type="submit" className="btn" value="Log In"/>
+                    <input type="submit" className="btn" value="Log in"/>
                 </div>
+
+                <div className="signup-container">
+                <a href="/signup">Create account</a>
                 </div>
             </form>
-       
+         
         
         <div className="google-login-container">
-       
-        
-            <GoogleLogin
-                clientId={clientId}
-                buttonText={"Log in with Google"}
-                // onSuccess={onSuccess}
-                // onFailure={onFailure}
-                cookiePolicy={'single_host_origin'}
-                isSignedIn={true}
-                style={{ height:10, size: 20}   
-                }
-            
-            />
+        <GoogleLogin
+            clientId={clientId}
+            buttonText={"Log in with Google"}
+            // onSuccess={onSuccess}
+            // onFailure={onFailure}
+            cookiePolicy={'single_host_origin'}
+            isSignedIn={true}
+        />
         </div>
         </div>
         </div>

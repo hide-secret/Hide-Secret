@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import {useHistory} from 'react-router-dom'
-const Signup = () => {
+const Signup = ({setUserId}) => {
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
     let history = useHistory()
@@ -14,7 +14,11 @@ const Signup = () => {
             body: JSON.stringify({username, password}),
         })
         .then((res) => res.json())
-        .then((data) => history.push('/homepage'))
+        .then((data) => {
+            setUserId(data.data[0].userid) 
+            history.push('/homepage')
+        })
+        
         .catch((err) => console.log(err))
     }
 

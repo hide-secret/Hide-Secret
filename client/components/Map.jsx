@@ -1,7 +1,6 @@
 import React, { useContext, useState, useEffect } from 'react'
 import { MenuContext } from 'react-flexible-sliding-menu'
 import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api';
-import Header from './Header'
 import swal from 'sweetalert'
 import axios from 'axios'
 import {getDistanceFromLatLonInMeters, deg2rad} from '../haversine_formula/formulas'
@@ -68,7 +67,7 @@ const Map = ({coord, userID}) => {
 							const location = window.navigator && window.navigator.geolocation
 							location.getCurrentPosition(position => {
 								let dist_away = Math.trunc(getDistanceFromLatLonInMeters(+e.latitude,+e.longitude,position.coords.latitude,position.coords.longitude))
-								console.log(dist_away)
+								// console.log(dist_away)
 								if(dist_away < MIN_DIST_TO_VIEW_SECRET){
 									if(e.userid !== userID){
 										axios.patch('http://localhost:3000/secrets/',
@@ -103,7 +102,6 @@ const Map = ({coord, userID}) => {
 
     return (
     <div className="map-container">
-        <Header />
     <LoadScript
         googleMapsApiKey="AIzaSyBvZynNRXAcbZte4W87A9TjUu7A4C4W5b0"
     >
@@ -115,7 +113,6 @@ const Map = ({coord, userID}) => {
         >
 
         {data && data.map((el, idx) => {
-            console.log("position", el)
             return (
             <Marker
                 key={idx}
@@ -129,10 +126,10 @@ const Map = ({coord, userID}) => {
     </LoadScript>
 
     <div className="dropSecret-container">
-        <button className="drop-msg-btn"
+        <button className="dropSecret-btn"
             onClick={dropSecret}
             >
-            Drop A Secret
+            Drop Secret
         </button>
     </div>
     </div>
@@ -142,5 +139,4 @@ const Map = ({coord, userID}) => {
 export default Map;
 
 
-//still need functionality to remove marker position after user gets secret
 
