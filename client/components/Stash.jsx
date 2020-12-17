@@ -2,8 +2,9 @@ import React, { useState, useEffect, useContext } from 'react'
 import { MenuContext } from 'react-flexible-sliding-menu'
 import { AiOutlineHome } from 'react-icons/ai'
 import Header from './Header'
-// import StashOutput from './StashOuput'
+import StashOutput from './StashOutput'
 import { Link, useLocation, useHistory } from 'react-router-dom'
+import axios from 'axios'
 
 const Stash = (props) => {
 
@@ -21,20 +22,11 @@ const Stash = (props) => {
   const [stash, setStash] = useState([])
   const { toggleMenu } = useContext(MenuContext)
 
-  // // get stash from backend
-  // useEffect(() => {
-  //   fetch('http://localhost:3000/secrets/stash', {
-  //     method: POST,
-  //     headers: {
-  //       'Content-Type': 'application/json'
-  //     },
-  //     body: JSON.stringify(stash)
-  //   })
-  //   .then((res) => res.json())
-  //   .then((data) => setStash(data))
-  // })
-
-  console.log("this is stash ", stash)
+    useEffect(() => {
+    axios.get(`http://localhost:3000/secrets/stash/${location.state.userID}`)
+    .then((data) => {
+      return setStash(data.data)})
+  }, [])
 
     return (
     <>
@@ -44,12 +36,12 @@ const Stash = (props) => {
     </div>
       <div className="stash-container">
         <div className="stash-title">Your Stash</div>
+        <div className="stash-list">
+          {stash && stash.map((element, index) => (
+            <StashOutput key={index} stashItem={element.message}/>
+      ))}
+        </div> 
       </div>
-      {/* <div className="stash-list">
-        {stash && stash.map((element, index) => (
-          <StashOutput key={index} stashItem={stash}/>
-    ))}
-      </div> */}
     </>
     )
 }

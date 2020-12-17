@@ -28,6 +28,11 @@ const Ranking = () => {
       history.push('/')
     }
 
+    
+
+
+
+
     return (
         <>
         <div className="ranking-main-container">
