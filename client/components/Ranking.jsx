@@ -1,9 +1,11 @@
 import React, { useState, useContext, useEffect} from 'react'
 import { MenuContext } from "react-flexible-sliding-menu"
+import { useHistory } from 'react-router-dom'
 
 
 const Ranking = () => {
     const { closeMenu } = useContext(MenuContext);
+    let history = useHistory();
 
     // save stats from database
     const [globalStats, setGlobalStats] = useState('')
@@ -20,6 +22,11 @@ const Ranking = () => {
       .then((data) => data.json())
       .then((data) => setUserstats(data))
     })
+
+    const logout = () => {
+      closeMenu();
+      history.push('/')
+    }
 
     return (
         <>
@@ -62,7 +69,7 @@ const Ranking = () => {
 
       </div>
       <footer className="ranking-footer">
-        <a href="/"><button className="btn">Logout</button></a>
+        <button onClick={logout} className="btn">Logout</button>
       </footer>
       </div>
       </>

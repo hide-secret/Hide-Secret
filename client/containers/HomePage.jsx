@@ -1,6 +1,7 @@
 import React, { useState, useEffect, Suspense } from 'react'
 // import Map from '../components/Map'
-import {useLocation} from 'react-router-dom'
+import {Redirect, useLocation} from 'react-router-dom'
+import Header from '../components/Header'
 
 const Map = React.lazy(() => import('../components/Map'))
 const HomePage = () => {
@@ -11,7 +12,6 @@ const HomePage = () => {
 
     useEffect(() => {
         navigator.geolocation.getCurrentPosition(function(position) {
-            console.log("this is position ", position)
             console.log("Latitude is :", position.coords.latitude);
             console.log("Longitude is :", position.coords.longitude);
             setCoord({latitude: position.coords.latitude, longitude: position.coords.longitude})
@@ -20,11 +20,18 @@ const HomePage = () => {
 
 
     console.log('position.coords.lat ', coord)
+    console.log(location)
     return (
         <>
+        { 
+        location.state !== undefined ?
         <Suspense fallback={<div className="loading"></div>}>
-        <Map coord={coord}/>
+            <Header userID={location.state.userID} />
+            <Map coord={coord} userID={location.state.userID}/>
         </Suspense>
+        :
+        <Redirect to='/'/>
+        }
         </>
     )
 }

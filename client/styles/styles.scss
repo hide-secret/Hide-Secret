@@ -102,6 +102,13 @@ input:focus {
   text-decoration: none;
   color: rgb(73, 71, 71);
   font-size: 1em;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
 }
 
 .signup-container a:hover {
@@ -125,10 +132,6 @@ input:focus {
   margin-top: 0.5em;
   max-width: 73%;
   font-size: 0.5em;
-  margin-left: 5em;
-  margin-top: 1em;
-  font-size: 0.5em;
-  opacity: 80%;
 }
 
 /* this is container for Signup container */
@@ -336,3 +339,29 @@ input:focus {
     transform: rotate(360deg);
   }
 }
+
+/* Drop Button */
+
+.drop-msg-btn {
+  background-color: #ffe4e1; /* Green */
+  border: none;
+  color: #1e2021;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  transition-duration: 0.4s;
+  border-radius: 50em;
+}
+.drop-msg-btn:hover {
+  box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24),
+    0 17px 50px 0 rgba(0, 0, 0, 0.19);
+}
+
+/* 
+37.5643476
+-121.9858608
+*/
