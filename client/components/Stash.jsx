@@ -16,8 +16,6 @@ const Stash = (props) => {
 
   const location = useLocation();
 
-  console.log("this is location.state ", location.state);
-
   // save stash from backend
   const [stash, setStash] = useState([])
   const { toggleMenu } = useContext(MenuContext)

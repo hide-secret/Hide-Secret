@@ -5,7 +5,6 @@ import {useLocation} from 'react-router-dom'
 const PopupMessage = ({latitude, longitude}) => {
     const [message, setMessage] = useState("")
     const location = useLocation()
-    console.log('LOCATION', location.state.userID)
     const sendingSecret = (e) => {
         e.preventDefault()
         //fetch to /secrets 
