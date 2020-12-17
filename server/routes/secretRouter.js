@@ -13,14 +13,19 @@ router.post("/", secretController.postNewSecret, (req, res) => {
 });
 
 //get all secret stash route
-router.post("/stash", secretController.getUserStash, (req, res) => {
+router.get("/stash/:userID", secretController.getUserStash, (req, res) => {
   res.status(200).json(res.locals.stash);
 });
 
 //update score and remove message from createdSecret table and
 //create same secret in stash table with user who found secret id
 router.patch("/", secretController.deleteAndStashSecret, (req, res) => {
-  res.status(200).json({});
+  res.status(200).json("deleted");
+});
+
+// getting ranking route
+router.get("/ranking", secretController.getAllRanking, (req, res) => {
+  res.status(200).json(res.locals.globalRank);
 });
 
 module.exports = router;
