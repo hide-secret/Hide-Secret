@@ -6,7 +6,6 @@ const Map = React.lazy(() => import('../components/Map'))
 const HomePage = () => {
     const location = useLocation()
     // console.log('LOCATION', location.state.userID)
-
     const [coord, setCoord] =  useState({})
 
     useEffect(() => {
