@@ -31,6 +31,7 @@ const Map = ({coord, userID}) => {
                     closeModal: false,
                 }
             }).then(msg => {
+							if(msg !== null) {
                 const location = window.navigator && window.navigator.geolocation
                 location.getCurrentPosition(position => {
                     axios.post('http://localhost:3000/secrets',
@@ -39,12 +40,16 @@ const Map = ({coord, userID}) => {
                         userID,
                         latitude: position.coords.latitude,
                         longitude: position.coords.longitude
-                    }).then(()=>{
+										}).then(()=>{
                         findMarker()
                         swal.stopLoading()
                         swal.close()
                     }).catch(err => err)
-                })
+								})
+							}else{
+								swal.stopLoading()
+								swal.close()
+							}
             }).catch(err=> {
                 if (err) {
                     swal("oh no, failed")
@@ -55,6 +60,7 @@ const Map = ({coord, userID}) => {
     }
 
     const displayText = (e, idx) =>{
+        console.log(e)
         swal({
             title: "Do You Want to View This Secret?",
             text: "Once viewed, the secret will no longer show up for others!",
@@ -102,29 +108,30 @@ const Map = ({coord, userID}) => {
 
     return (
     <div className="map-container">
-    <LoadScript
-        googleMapsApiKey="AIzaSyBvZynNRXAcbZte4W87A9TjUu7A4C4W5b0"
-    >
-        <GoogleMap
-            mapContainerStyle={{width: '100vw', height: '95%'}}
-            center={{lat: coord.latitude, lng: coord.longitude}}
-            zoom={15}
-            options={{disableDefaultUI: true}}
-        >
+			<div className="google-map">
+			<LoadScript
+					googleMapsApiKey="AIzaSyBvZynNRXAcbZte4W87A9TjUu7A4C4W5b0"
+			>
+					<GoogleMap
+							mapContainerStyle={{width: '100vw', height: '100%'}}
+							center={{lat: coord.latitude, lng: coord.longitude}}
+							zoom={15}
+							options={{disableDefaultUI: true}}
+					>
 
-        {data && data.map((el, idx) => {
-            return (
-            <Marker
-                key={idx}
-                position={{lat: +el.latitude, lng: +el.longitude}}
-                onClick={()=>{displayText(el, idx)}}
-            />)
-        })}
+					{data && data.map((el, idx) => {
+							return (
+							<Marker
+									key={idx}
+									position={{lat: +el.latitude, lng: +el.longitude}}
+									onClick={()=>{displayText(el, idx)}}
+							/>)
+					})}
 
-        <></>
-        </GoogleMap>
-    </LoadScript>
-
+					<></>
+					</GoogleMap>
+			</LoadScript>
+		</div>
     <div className="dropSecret-container">
         <button className="dropSecret-btn"
             onClick={dropSecret}
