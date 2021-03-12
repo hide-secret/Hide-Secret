@@ -7,7 +7,6 @@ const Map = React.lazy(() => import('../components/Map'))
 const HomePage = () => {
     const location = useLocation()
     // console.log('LOCATION', location.state.userID)
-
     const [coord, setCoord] =  useState({})
 
     useEffect(() => {
@@ -22,7 +21,7 @@ const HomePage = () => {
     console.log('position.coords.lat ', coord)
     console.log(location)
     return (
-        <>
+        <div className="home">
         { 
         location.state !== undefined ?
         <Suspense fallback={<div className="loading"></div>}>
@@ -32,7 +31,7 @@ const HomePage = () => {
         :
         <Redirect to='/'/>
         }
-        </>
+        </div>
     )
 }
 

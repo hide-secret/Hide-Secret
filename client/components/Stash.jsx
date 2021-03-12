@@ -28,18 +28,20 @@ const Stash = (props) => {
 
     return (
     <>
-    <div className="ranking-main-container">
-      <div className="map-header">
-        <div onClick={toggleMenu} className="map-logo"><i class="fa fa-trophy"></i></div>
-        <div onClick={redirect} className="stash-icon" ><div className="hamburger-icon"><AiOutlineHome /></div></div>
-    </div>
-      <div id="stash-container" className="global-ranking-container">
-        <div className="global-ranking-title">Your Stash</div>
-        <div className="global-ranking-count">
-          {stash && stash.map((element, index) => (
-            <StashOutput key={index} stashItem={element.message}/>
-      ))}
-        </div> 
+      <div className="stash-overall-container">
+        <div className="map-header">
+          <div onClick={toggleMenu} className="map-logo"><i class="fa fa-trophy"></i></div>
+          <div onClick={redirect} className="stash-icon" ><div className="hamburger-icon"><AiOutlineHome /></div></div>
+        </div>
+        <div className="main-stash-container">
+          <div className="global-ranking-title stash-title">Your Stash</div>
+          <div className="scroll-box">
+            <div className="global-ranking-rank box ">
+              {stash && stash.map((element, index) => (
+                <StashOutput key={index} stashItem={element.message}/>
+              ))}
+          </div> 
+        </div>
       </div>
       </div>
     </>
