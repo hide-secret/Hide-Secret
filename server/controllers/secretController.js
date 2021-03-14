@@ -1,16 +1,44 @@
 const db = require("../Database/Database");
+const redis = require("redis");
+const { promisify } = require("util");
+
+const client = redis.createClient({
+  host: "127.0.0.1",
+  port: 6379,
+});
+
+const GET_ASYNC = promisify(client.get).bind(client);
+const SET_ASYNC = promisify(client.set).bind(client);
 
 module.exports = {
-  getAllSecrets: (req, res, next) => {
-    let query = "SELECT * FROM CreatedSecrets";
-    db.query(query)
-      .then((data) => {
-        res.locals.secrets = data.rows;
+  getAllSecrets: async (req, res, next) => {
+    try {
+      let query = "SELECT * FROM CreatedSecrets";
+
+      const reply = await GET_ASYNC("allSecrets");
+
+      if (reply) {
+        console.log("Using cache to get allSecrets");
+        res.locals.secrets = JSON.parse(reply);
         return next();
-      })
-      .catch((err) => {
-        return next(err);
-      });
+      }
+
+      const data = await db.query(query);
+      const saveResult = await SET_ASYNC(
+        "allSecrets",
+        JSON.stringify(data.rows),
+        "EX",
+        5
+      );
+      console.log(
+        "all secrets had been cached. Pulling from database ",
+        saveResult
+      );
+      res.locals.secrets = data.rows;
+      return next();
+    } catch (err) {
+      return next(err);
+    }
   },
 
   getUserStash: (req, res, next) => {

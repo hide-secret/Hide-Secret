@@ -20,9 +20,12 @@ if (cluster.isMaster) {
   const passport = require("passport");
   const cookieParser = require("cookie-parser");
   const cors = require("cors");
+  const responseTime = require("response-time");
 
   app.use(cookieParser());
   app.use(cors());
+
+  app.use(responseTime());
 
   //import routers
   const passportRouter = require("./routes/passportRouter");
