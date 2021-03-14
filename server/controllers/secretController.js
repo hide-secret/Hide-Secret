@@ -41,17 +41,31 @@ module.exports = {
     }
   },
 
-  getUserStash: (req, res, next) => {
-    let { userID } = req.params;
-    let query = "SELECT * FROM SecretStash WHERE userID = ($1)";
-    db.query(query, [userID])
-      .then((data) => {
-        res.locals.stash = data.rows;
+  getUserStash: async (req, res, next) => {
+    try {
+      let { userID } = req.params;
+      const userStash = await GET_ASYNC(`${userID}_stash`);
+
+      if (userStash) {
+        console.log("Grabbing secret stash from redis cache");
+        res.locals.stash = JSON.parse(userStash);
         return next();
-      })
-      .catch((err) => {
-        return next(err);
-      });
+      }
+
+      let query = "SELECT * FROM SecretStash WHERE userID = ($1)";
+      const data = await db.query(query, [userID]);
+      const saveUserStash = await SET_ASYNC(
+        `${userID}_stash`,
+        JSON.stringify(data.rows),
+        "EX",
+        10
+      );
+      console.log("UserID stash has been save to redis. Pulling from PG");
+      res.locals.stash = data.rows;
+      return next();
+    } catch (err) {
+      return next(err);
+    }
   },
 
   postNewSecret: (req, res, next) => {
