@@ -28,7 +28,7 @@ module.exports = {
         "allSecrets",
         JSON.stringify(data.rows),
         "EX",
-        5
+        10
       );
       console.log(
         "all secrets had been cached. Pulling from database ",
@@ -98,17 +98,32 @@ module.exports = {
       .catch((err) => next(err));
   },
 
-  getAllRanking: (req, res, next) => {
+  getAllRanking: async (req, res, next) => {
     // SELECT username, score FROM users ORDER BY score DESC
-    const rankAllQuery =
-      "SELECT username, score, userID FROM users ORDER BY score DESC";
-    db.query(rankAllQuery)
-      .then((data) => {
-        res.locals.globalRank = data.rows;
+    try {
+      const rankedCachedData = await GET_ASYNC("rankingData");
+
+      if (rankedCachedData) {
+        console.log("Pulling from Redis cache");
+        res.locals.globalRank = JSON.parse(rankedCachedData);
         return next();
-      })
-      .catch((err) => {
-        return next(err);
-      });
+      }
+
+      const rankAllQuery =
+        "SELECT username, score, userID FROM users ORDER BY score DESC";
+
+      const data = await db.query(rankAllQuery);
+      const rankingData = await SET_ASYNC(
+        "rankingData",
+        JSON.stringify(data.rows),
+        "EX",
+        10
+      );
+      console.log("Cached rankedData to Redis. Pulling from PG, ", rankingData);
+      res.locals.globalRank = data.rows;
+      return next();
+    } catch (err) {
+      return next(err);
+    }
   },
 };
