@@ -15,11 +15,11 @@ module.exports = {
     try {
       let query = "SELECT * FROM CreatedSecrets";
 
-      const reply = await GET_ASYNC("allSecrets");
+      const allSecrets = await GET_ASYNC("allSecrets");
 
-      if (reply) {
+      if (allSecrets) {
         console.log("Using cache to get allSecrets");
-        res.locals.secrets = JSON.parse(reply);
+        res.locals.secrets = JSON.parse(allSecrets);
         return next();
       }
 
