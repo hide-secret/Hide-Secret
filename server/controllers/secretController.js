@@ -1,39 +1,39 @@
 const db = require("../Database/Database");
-const redis = require("redis");
-const { promisify } = require("util");
+// const redis = require("redis");
+// const { promisify } = require("util");
 
-const client = redis.createClient({
-  host: "127.0.0.1",
-  port: 6379,
-});
+// const client = redis.createClient({
+//   host: "127.0.0.1",
+//   port: 6379,
+// });
 
-const GET_ASYNC = promisify(client.get).bind(client);
-const SET_ASYNC = promisify(client.set).bind(client);
+// const GET_ASYNC = promisify(client.get).bind(client);
+// const SET_ASYNC = promisify(client.set).bind(client);
 
 module.exports = {
   getAllSecrets: async (req, res, next) => {
     try {
       let query = "SELECT * FROM CreatedSecrets";
 
-      const allSecrets = await GET_ASYNC("allSecrets");
+      // const allSecrets = await GET_ASYNC("allSecrets");
 
-      if (allSecrets) {
-        console.log("Using cache to get allSecrets");
-        res.locals.secrets = JSON.parse(allSecrets);
-        return next();
-      }
+      // if (allSecrets) {
+      //   console.log("Using cache to get allSecrets");
+      //   res.locals.secrets = JSON.parse(allSecrets);
+      //   return next();
+      // }
 
       const data = await db.query(query);
-      const saveResult = await SET_ASYNC(
-        "allSecrets",
-        JSON.stringify(data.rows),
-        "EX",
-        10
-      );
-      console.log(
-        "all secrets had been cached. Pulling from database ",
-        saveResult
-      );
+      // const saveResult = await SET_ASYNC(
+      //   "allSecrets",
+      //   JSON.stringify(data.rows),
+      //   "EX",
+      //   10
+      // );
+      // console.log(
+      //   "all secrets had been cached. Pulling from database ",
+      //   saveResult
+      // );
       res.locals.secrets = data.rows;
       return next();
     } catch (err) {
@@ -44,23 +44,23 @@ module.exports = {
   getUserStash: async (req, res, next) => {
     try {
       let { userID } = req.params;
-      const userStash = await GET_ASYNC(`${userID}_stash`);
+      // const userStash = await GET_ASYNC(`${userID}_stash`);
 
-      if (userStash) {
-        console.log("Grabbing secret stash from redis cache");
-        res.locals.stash = JSON.parse(userStash);
-        return next();
-      }
+      // if (userStash) {
+      //   console.log("Grabbing secret stash from redis cache");
+      //   res.locals.stash = JSON.parse(userStash);
+      //   return next();
+      // }
 
       let query = "SELECT * FROM SecretStash WHERE userID = ($1)";
       const data = await db.query(query, [userID]);
-      const saveUserStash = await SET_ASYNC(
-        `${userID}_stash`,
-        JSON.stringify(data.rows),
-        "EX",
-        10
-      );
-      console.log("UserID stash has been save to redis. Pulling from PG");
+      // const saveUserStash = await SET_ASYNC(
+      //   `${userID}_stash`,
+      //   JSON.stringify(data.rows),
+      //   "EX",
+      //   10
+      // );
+      // console.log("UserID stash has been save to redis. Pulling from PG");
       res.locals.stash = data.rows;
       return next();
     } catch (err) {
@@ -101,25 +101,25 @@ module.exports = {
   getAllRanking: async (req, res, next) => {
     // SELECT username, score FROM users ORDER BY score DESC
     try {
-      const rankedCachedData = await GET_ASYNC("rankingData");
+      // const rankedCachedData = await GET_ASYNC("rankingData");
 
-      if (rankedCachedData) {
-        console.log("Pulling from Redis cache");
-        res.locals.globalRank = JSON.parse(rankedCachedData);
-        return next();
-      }
+      // if (rankedCachedData) {
+      //   console.log("Pulling from Redis cache");
+      //   res.locals.globalRank = JSON.parse(rankedCachedData);
+      //   return next();
+      // }
 
       const rankAllQuery =
         "SELECT username, score, userID FROM users ORDER BY score DESC";
 
       const data = await db.query(rankAllQuery);
-      const rankingData = await SET_ASYNC(
-        "rankingData",
-        JSON.stringify(data.rows),
-        "EX",
-        10
-      );
-      console.log("Cached rankedData to Redis. Pulling from PG, ", rankingData);
+      // const rankingData = await SET_ASYNC(
+      //   "rankingData",
+      //   JSON.stringify(data.rows),
+      //   "EX",
+      //   10
+      // );
+      // console.log("Cached rankedData to Redis. Pulling from PG, ", rankingData);
       res.locals.globalRank = data.rows;
       return next();
     } catch (err) {
